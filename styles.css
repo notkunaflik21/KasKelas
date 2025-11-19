@@ -1,0 +1,22 @@
+body {
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.nav-item {
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.nav-item.active {
+  background-color: #d6e6fd;
+  color: #1643a1;
+  font-weight: 600;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

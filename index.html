@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KasKelas 2025 - Pencatat Uang Kas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+  <link rel="stylesheet" href="styles.css" />
+  <script defer src="app.js"></script>
+</head>
+<body class="bg-slate-100 text-slate-900">
+  <div class="min-h-screen flex flex-col md:flex-row">
+    <aside class="md:w-64 bg-white border-r border-slate-200">
+      <div class="px-6 py-5 border-b border-slate-100">
+        <p class="text-sm uppercase tracking-[0.3em] text-slate-400">KasKelas 2025</p>
+        <p class="mt-2 text-2xl font-semibold text-slate-900">Pencatat Uang Kas</p>
+        <p class="text-sm text-slate-500">Monitor kas harian kelas secara realtime.</p>
+      </div>
+      <nav class="hidden md:block p-4 space-y-2">
+        <button class="nav-item w-full text-left px-4 py-2 rounded-lg text-slate-600" data-target="section-dashboard">Dashboard</button>
+        <button class="nav-item w-full text-left px-4 py-2 rounded-lg text-slate-600" data-target="section-students">Daftar Siswa</button>
+        <button class="nav-item w-full text-left px-4 py-2 rounded-lg text-slate-600" data-target="section-kas">Kas Harian</button>
+        <button class="nav-item w-full text-left px-4 py-2 rounded-lg text-slate-600" data-target="section-recap">Rekap &amp; Tunggakan</button>
+        <button class="nav-item w-full text-left px-4 py-2 rounded-lg text-slate-600" data-target="section-wallets">Dompet</button>
+        <button class="nav-item w-full text-left px-4 py-2 rounded-lg text-slate-600" data-target="section-withdraw">Riwayat Penarikan</button>
+        <button class="nav-item w-full text-left px-4 py-2 rounded-lg text-slate-600" data-target="section-settings">Pengaturan</button>
+      </nav>
+    </aside>
+
+    <div class="flex-1 flex flex-col">
+      <div class="md:hidden bg-white border-b border-slate-200 sticky top-0 z-10">
+        <div class="flex overflow-x-auto no-scrollbar gap-2 px-4 py-3 text-sm">
+          <button class="nav-item px-3 py-2 rounded-full border border-slate-200" data-target="section-dashboard">Dashboard</button>
+          <button class="nav-item px-3 py-2 rounded-full border border-slate-200" data-target="section-students">Siswa</button>
+          <button class="nav-item px-3 py-2 rounded-full border border-slate-200" data-target="section-kas">Kas</button>
+          <button class="nav-item px-3 py-2 rounded-full border border-slate-200" data-target="section-recap">Rekap</button>
+          <button class="nav-item px-3 py-2 rounded-full border border-slate-200" data-target="section-wallets">Dompet</button>
+          <button class="nav-item px-3 py-2 rounded-full border border-slate-200" data-target="section-withdraw">Penarikan</button>
+          <button class="nav-item px-3 py-2 rounded-full border border-slate-200" data-target="section-settings">Setting</button>
+        </div>
+      </div>
+
+      <main class="flex-1 p-4 md:p-8 space-y-6">
+        <div id="alertContainer" class="space-y-3"></div>
+        <div class="flex justify-end">
+          <button id="globalSaveBtn" class="inline-flex items-center gap-2 rounded-full border border-brand-200 bg-white px-4 py-2 text-sm font-semibold text-brand-700 shadow-sm hover:bg-brand-50">
+            <span class="text-base">💾</span>
+            Simpan Data
+          </button>
+        </div>
+
+        <section id="section-dashboard" data-section class="space-y-5">
+          <div class="flex items-center justify-between flex-wrap gap-4">
+            <div>
+              <p class="text-xs font-semibold tracking-[0.3em] text-slate-400">Dashboard</p>
+              <h1 class="text-3xl font-semibold text-slate-900">Ringkasan Kas Kelas</h1>
+            </div>
+            <div class="flex items-center gap-3 text-sm text-slate-500">
+              <div class="inline-flex items-center gap-2 rounded-full border border-slate-200 px-4 py-1.5 shadow-sm">
+                <span class="text-xs uppercase text-slate-400">Tahun ajar</span>
+                <span id="activeSchoolYear" class="font-semibold text-slate-900">2025</span>
+              </div>
+              <span class="text-xs text-slate-400">Pembaruan realtime</span>
+            </div>
+          </div>
+          <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+            <article class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm">
+              <div class="flex items-center justify-between text-sm text-slate-500">
+                <span>Total Siswa</span>
+                <span class="inline-flex items-center rounded-full bg-slate-100 px-2 py-0.5 text-[11px] font-semibold text-slate-600">Kelas</span>
+              </div>
+              <p class="mt-4 text-4xl font-semibold text-slate-900" id="statTotalStudents">0</p>
+              <p class="text-xs text-slate-400">Aktif <span id="statActiveStudents">0</span></p>
+            </article>
+            <article class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm">
+              <div class="flex items-center justify-between text-sm text-slate-500">
+                <span>Saldo Dompet</span>
+                <span class="text-[11px] uppercase tracking-widest text-slate-400">Tunai</span>
+              </div>
+              <p class="mt-4 text-3xl font-semibold text-brand-600" id="statDompet">Rp 0</p>
+              <p class="text-xs text-slate-400">Kas masuk terbaru</p>
+            </article>
+            <article class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm">
+              <p class="text-sm text-slate-500">Total Saldo Kas</p>
+              <p class="mt-4 text-3xl font-semibold text-emerald-600" id="statSaldo">Rp 0</p>
+              <p class="text-xs text-slate-400">Dana berjalan</p>
+            </article>
+            <article class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm">
+              <p class="text-sm text-slate-500">Hari Kas Berjalan</p>
+              <p class="mt-4 text-3xl font-semibold text-slate-900"><span id="runningDays">0</span> <span class="text-base font-normal text-slate-400">hari</span></p>
+              <p class="text-xs text-slate-400">Pantau progres periodik</p>
+            </article>
+          </div>
+          <div class="grid gap-4 lg:grid-cols-3">
+            <div class="lg:col-span-2 bg-white rounded-2xl border border-slate-200 p-5 shadow-sm">
+              <div class="flex items-center justify-between">
+                <div>
+                  <h3 class="text-lg font-semibold text-slate-900">Performa Kas</h3>
+                  <p class="text-xs text-slate-500">Realisasi vs target mingguan</p>
+                </div>
+                <div class="text-right">
+                  <p class="text-[11px] uppercase text-slate-400">Target</p>
+                  <p class="text-sm font-semibold text-slate-900" id="statExpectedKas">Rp 0</p>
+                </div>
+              </div>
+              <div class="mt-5">
+                <div class="flex items-baseline gap-2">
+                  <p class="text-4xl font-semibold text-slate-900" id="statProgressPercent">0%</p>
+                  <span class="text-sm text-slate-400">realisasi kas</span>
+                </div>
+                <div class="mt-4 h-3 w-full rounded-full bg-slate-100 overflow-hidden">
+                  <div id="kasProgressIndicator" class="h-full rounded-full bg-gradient-to-r from-brand-500 via-brand-400 to-emerald-400 transition-all duration-500" style="width: 0%"></div>
+                </div>
+              </div>
+              <div class="mt-6">
+                <div class="flex items-center justify-between text-xs text-slate-500">
+                  <span>Grafik kas 7 hari terakhir</span>
+                  <span class="text-slate-400">Jumlah harian</span>
+                </div>
+                <div id="kasTrendBars" class="mt-4 flex items-end gap-3 min-h-[6rem]"></div>
+              </div>
+            </div>
+            <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm">
+              <div class="flex items-center justify-between mb-4">
+                <h3 class="font-semibold text-lg text-slate-900">Penunggak Tertinggi</h3>
+                <span class="text-xs text-slate-500">Top 3</span>
+              </div>
+              <ul id="topDebtorList" class="space-y-3 text-sm text-slate-600">
+                <li class="text-slate-400">Data akan muncul setelah ada transaksi</li>
+              </ul>
+            </div>
+          </div>
+          <div class="grid gap-4 lg:grid-cols-3">
+            <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm">
+              <div class="flex items-center justify-between mb-4">
+                <h3 class="font-semibold text-lg text-slate-900">Transaksi Terbaru</h3>
+                <span class="text-xs text-slate-500">5 terakhir</span>
+              </div>
+              <ul id="latestPayments" class="space-y-3 text-sm text-slate-600">
+                <li class="text-slate-400">Belum ada transaksi kas</li>
+              </ul>
+            </div>
+            <div class="lg:col-span-2 bg-white rounded-2xl border border-slate-200 p-5 shadow-sm">
+              <div class="flex items-center justify-between mb-4">
+                <div>
+                  <h3 class="text-lg font-semibold text-slate-900">Monitor Status Siswa</h3>
+                  <p class="text-xs text-slate-500">Tap status untuk melihat detail tanggal lunas/tunggakan.</p>
+                </div>
+                <span class="text-xs text-slate-500">Realtime</span>
+              </div>
+              <div id="studentStatusBoard" class="grid gap-3 md:grid-cols-2 xl:grid-cols-3"></div>
+              <div id="studentStatusDetail" class="mt-4 rounded-2xl border border-slate-100 bg-slate-50 p-4 text-sm text-slate-600">
+                <p class="text-slate-500" id="studentStatusDetailBody">Pilih status siswa untuk menampilkan rincian tanggal.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="section-students" data-section class="space-y-4 hidden">
+          <div class="flex items-center justify-between">
+            <div>
+              <p class="text-sm uppercase tracking-widest text-slate-400">Data Master</p>
+              <h2 class="text-2xl font-semibold">Daftar Siswa</h2>
+            </div>
+          </div>
+          <div class="grid gap-6 lg:grid-cols-3">
+            <div class="bg-white border border-slate-200 rounded-2xl shadow-sm p-5">
+              <div class="flex items-center justify-between mb-4">
+                <h3 id="studentFormTitle" class="text-lg font-semibold">Tambah Siswa</h3>
+                <span class="text-xs text-slate-500">CRUD siswa</span>
+              </div>
+              <form id="studentForm" class="space-y-4">
+                <div>
+                  <label for="studentName" class="text-sm text-slate-500">Nama Lengkap</label>
+                  <input id="studentName" type="text" required class="mt-1 w-full rounded-xl border-slate-200" placeholder="ex: Ahmad" />
+                </div>
+                <div>
+                  <label for="studentNis" class="text-sm text-slate-500">No Absen</label>
+                  <input id="studentNis" type="text" required class="mt-1 w-full rounded-xl border-slate-200" placeholder="Nomor absen" />
+                </div>
+                <div class="flex items-center gap-2">
+                  <input id="studentActive" type="checkbox" class="rounded border-slate-300 text-brand-600" checked />
+                  <label for="studentActive" class="text-sm text-slate-600">Status aktif</label>
+                </div>
+                <div class="flex flex-col gap-3">
+                  <button id="studentSubmitBtn" type="submit" class="inline-flex justify-center rounded-xl bg-brand-600 px-4 py-2 text-white font-medium hover:bg-brand-700">Simpan</button>
+                  <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                    <button
+                      id="quickAddStudentBtn"
+                      type="button"
+                      class="inline-flex items-center justify-center rounded-xl border border-brand-200 bg-white px-4 py-2 text-sm font-semibold text-brand-700 hover:bg-brand-50 shadow-sm"
+                    >
+                      + Tambah Siswa
+                    </button>
+                    <button type="reset" class="inline-flex justify-center rounded-xl border border-slate-200 px-4 py-2 text-slate-600 sm:ml-auto">Reset</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="lg:col-span-2 bg-white border border-slate-200 rounded-2xl shadow-sm p-5">
+              <div class="flex items-center justify-between mb-4 flex-wrap gap-3">
+                <div>
+                  <h3 class="text-lg font-semibold">Siswa Terdaftar</h3>
+                  <p class="text-xs text-slate-500">Klik edit untuk memperbarui data</p>
+                </div>
+              </div>
+              <div class="overflow-x-auto">
+                <table class="min-w-full text-sm">
+                  <thead class="bg-slate-50 text-xs uppercase text-slate-500">
+                    <tr>
+                      <th class="px-3 py-2 text-left">Nama</th>
+                      <th class="px-3 py-2 text-left">No Absen</th>
+                      <th class="px-3 py-2 text-left">Status</th>
+                      <th class="px-3 py-2 text-left">Daftar</th>
+                      <th class="px-3 py-2 text-right">Aksi</th>
+                    </tr>
+                  </thead>
+                  <tbody id="studentTableBody" class="divide-y divide-slate-100"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="section-kas" data-section class="space-y-4 hidden">
+          <div class="flex items-center justify-between">
+            <div>
+              <p class="text-sm uppercase tracking-widest text-slate-400">Transaksi</p>
+              <h2 class="text-2xl font-semibold">Kas Harian</h2>
+            </div>
+          </div>
+          <div class="bg-white border border-slate-200 rounded-2xl shadow-sm p-5 space-y-6">
+            <form id="kasForm" class="grid gap-4 md:grid-cols-2">
+              <div class="space-y-2">
+                <div>
+                  <label class="text-sm text-slate-500" for="kasStudentSearch">Cari Siswa</label>
+                  <input id="kasStudentSearch" type="text" class="mt-1 w-full rounded-xl border-slate-200" placeholder="Ketik nama atau no absen" />
+                </div>
+                <div>
+                  <label class="text-sm text-slate-500" for="kasStudent">Pilih Siswa</label>
+                  <select id="kasStudent" required class="mt-1 w-full rounded-xl border-slate-200">
+                    <option value="">Pilih siswa</option>
+                  </select>
+                </div>
+              </div>
+              <div>
+                <label class="text-sm text-slate-500" for="kasAmount">Nominal (Rp)</label>
+                <input id="kasAmount" type="number" min="1000" step="500" class="mt-1 w-full rounded-xl border-slate-200" placeholder="Masukkan jumlah pembayaran" required />
+              </div>
+              <div class="md:col-span-2">
+                <p class="text-xs text-slate-500 mb-2">Quick pick siswa aktif (tap nama untuk memilih cepat)</p>
+                <div id="kasStudentQuickList" class="grid gap-2 sm:grid-cols-2 lg:grid-cols-4"></div>
+              </div>
+              <div class="md:col-span-2">
+                <button type="submit" class="w-full rounded-xl bg-emerald-600 py-3 text-white font-semibold hover:bg-emerald-700">Catat Pembayaran</button>
+              </div>
+            </form>
+          </div>
+        </section>
+
+        <section id="section-recap" data-section class="space-y-4 hidden">
+          <div class="flex items-center justify-between">
+            <div>
+              <p class="text-sm uppercase tracking-widest text-slate-400">Monitoring</p>
+              <h2 class="text-2xl font-semibold">Rekap &amp; Tunggakan</h2>
+            </div>
+            <p class="text-sm text-slate-500">Hari kas berjalan: <span id="runningDays">0</span> hari kerja</p>
+          </div>
+          <div class="bg-white border border-slate-200 rounded-2xl shadow-sm p-5">
+            <div class="overflow-x-auto">
+              <table class="min-w-full text-sm">
+                <thead class="bg-slate-50 text-xs uppercase text-slate-500">
+                  <tr>
+                    <th class="px-3 py-2 text-left">Siswa</th>
+                    <th class="px-3 py-2 text-left">Lunas s/d</th>
+                    <th class="px-3 py-2 text-right">Total Bayar</th>
+                    <th class="px-3 py-2 text-right">Hari Terbayar</th>
+                    <th class="px-3 py-2 text-right">Tunggakan Hari</th>
+                    <th class="px-3 py-2 text-right">Tunggakan Rp</th>
+                  </tr>
+                </thead>
+                <tbody id="recapTableBody" class="divide-y divide-slate-100"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <section id="section-wallets" data-section class="space-y-4 hidden">
+          <div class="flex items-center justify-between">
+            <div>
+              <p class="text-sm uppercase tracking-widest text-slate-400">Saldo</p>
+              <h2 class="text-2xl font-semibold">Dompet Kas</h2>
+            </div>
+          </div>
+          <div class="bg-white border border-slate-200 rounded-2xl shadow-sm p-5 space-y-3">
+            <p class="text-sm text-slate-500">Dompet</p>
+            <p class="mt-2 text-3xl font-semibold text-brand-700" id="walletDompetBalance">Rp 0</p>
+            <p class="text-xs text-slate-500">Semua kas siswa tersimpan di sini.</p>
+            <div class="pt-3 border-t border-slate-100">
+              <p class="text-sm text-slate-500 mb-2">Perlu membeli perlengkapan atau pengeluaran lain?</p>
+              <button id="goToWithdrawBtn" class="inline-flex items-center gap-2 rounded-full bg-brand-600 px-4 py-2 text-white text-sm font-semibold hover:bg-brand-700">
+                Catat Pengeluaran
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <section id="section-withdraw" data-section class="space-y-4 hidden">
+          <div class="flex items-center justify-between">
+            <div>
+              <p class="text-sm uppercase tracking-widest text-slate-400">Log Aktivitas</p>
+              <h2 class="text-2xl font-semibold">Riwayat Penarikan Dompet</h2>
+            </div>
+          </div>
+          <div class="bg-white border border-slate-200 rounded-2xl shadow-sm p-5 space-y-4">
+            <form id="withdrawForm" class="grid gap-4 md:grid-cols-2">
+              <div>
+                <label class="text-sm text-slate-500" for="withdrawDate">Tanggal</label>
+                <input id="withdrawDate" type="date" required class="mt-1 w-full rounded-xl border-slate-200" />
+              </div>
+              <div>
+                <label class="text-sm text-slate-500" for="withdrawAmount">Nominal</label>
+                <input id="withdrawAmount" type="number" min="1000" step="1000" class="mt-1 w-full rounded-xl border-slate-200" placeholder="Rp (akan mengurangi dompet)" required />
+              </div>
+              <div>
+                <label class="text-sm text-slate-500" for="withdrawReason">Alasan Penarikan</label>
+                <input id="withdrawReason" type="text" class="mt-1 w-full rounded-xl border-slate-200" placeholder="Contoh: Beli perlengkapan" required />
+              </div>
+              <div>
+                <label class="text-sm text-slate-500" for="withdrawAuthor">Dibuat oleh</label>
+                <input id="withdrawAuthor" type="text" class="mt-1 w-full rounded-xl border-slate-200" placeholder="Nama bendahara" required />
+              </div>
+              <div class="md:col-span-2">
+                <button type="submit" class="w-full rounded-xl bg-rose-600 py-3 text-white font-semibold hover:bg-rose-700">Catat Pengeluaran</button>
+              </div>
+            </form>
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <h3 class="text-lg font-semibold">Riwayat Penarikan</h3>
+                <p class="text-xs text-slate-500">Urut terbaru</p>
+              </div>
+              <div class="overflow-x-auto">
+                <table class="min-w-full text-sm">
+                  <thead class="bg-slate-50 text-xs uppercase text-slate-500">
+                    <tr>
+                      <th class="px-3 py-2 text-left">Tanggal</th>
+                      <th class="px-3 py-2 text-left">Jumlah</th>
+                      <th class="px-3 py-2 text-left">Alasan</th>
+                      <th class="px-3 py-2 text-left">Bendahara</th>
+                    </tr>
+                  </thead>
+                  <tbody id="withdrawTableBody" class="divide-y divide-slate-100"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="section-settings" data-section class="space-y-4 hidden">
+          <div class="flex items-center justify-between">
+            <div>
+              <p class="text-sm uppercase tracking-widest text-slate-400">Preferensi</p>
+              <h2 class="text-2xl font-semibold">Pengaturan Aplikasi</h2>
+            </div>
+          </div>
+          <div class="grid gap-6 lg:grid-cols-3">
+            <form id="settingsForm" class="bg-white border border-slate-200 rounded-2xl shadow-sm p-5 space-y-4 lg:col-span-2">
+              <div>
+                <label class="text-sm text-slate-500" for="settingKasPerHari">Kas per Hari (Rp)</label>
+                <input id="settingKasPerHari" type="number" min="500" step="500" class="mt-1 w-full rounded-xl border-slate-200" required />
+              </div>
+              <div class="grid gap-4 md:grid-cols-2">
+                <div>
+                  <label class="text-sm text-slate-500" for="settingStartDate">Mulai Tahun Ajar</label>
+                  <input id="settingStartDate" type="date" class="mt-1 w-full rounded-xl border-slate-200" required />
+                </div>
+                <div>
+                  <label class="text-sm text-slate-500" for="settingEndDate">Akhir Tahun Ajar</label>
+                  <input id="settingEndDate" type="date" class="mt-1 w-full rounded-xl border-slate-200" required />
+                </div>
+              </div>
+              <div class="grid gap-4 md:grid-cols-2">
+                <div>
+                  <label class="text-sm text-slate-500" for="settingSchoolYear">Label Tahun Ajar</label>
+                  <input id="settingSchoolYear" type="text" class="mt-1 w-full rounded-xl border-slate-200" placeholder="Contoh: 2025" required />
+                </div>
+              </div>
+              <div class="pt-2">
+                <button type="submit" class="w-full rounded-xl bg-brand-600 py-3 text-white font-semibold hover:bg-brand-700">Simpan Pengaturan</button>
+              </div>
+            </form>
+            <div class="space-y-4">
+              <div class="bg-white border border-slate-200 rounded-2xl shadow-sm p-5 space-y-3">
+                <h3 class="text-lg font-semibold text-slate-900">Backup &amp; Import</h3>
+                <p class="text-sm text-slate-600">Unduh cadangan data lokal atau impor file JSON hasil backup.</p>
+                <div class="space-y-2">
+                  <button id="backupDataBtn" type="button" class="w-full rounded-xl border border-brand-200 py-2.5 text-brand-700 font-semibold hover:bg-brand-50">📥 Backup Data</button>
+                  <button id="importDataBtn" type="button" class="w-full rounded-xl border border-slate-200 py-2.5 text-slate-700 font-semibold hover:bg-slate-50">📤 Import Data</button>
+                  <input id="importDataInput" type="file" accept="application/json" class="hidden" />
+                </div>
+              </div>
+              <div class="bg-white border border-rose-200 rounded-2xl shadow-sm p-5 space-y-3">
+                <h3 class="text-lg font-semibold text-rose-600">Zona Berbahaya</h3>
+                <p class="text-sm text-slate-600">Reset semua data kas, siswa, saldo, dan histori.</p>
+                <button id="settingsSaveBtn" class="w-full rounded-xl border border-brand-200 py-2.5 text-brand-700 font-semibold hover:bg-brand-50">Simpan Data</button>
+                <button id="resetDataBtn" class="w-full rounded-xl border border-rose-300 py-2.5 text-rose-600 font-semibold hover:bg-rose-50">Reset Data</button>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+</body>
+</html>
