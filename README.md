@@ -109,7 +109,7 @@ npx serve -l 4000
 
 ## 📸 Preview
 
-> Tambahkan screenshot dashboard agar tampilan lebih menarik.
+<img width="1373" height="963" alt="Image" src="https://github.com/user-attachments/assets/76a21f8c-efc9-459c-a2e2-49d3a5a99993" />
 
 
 ```
