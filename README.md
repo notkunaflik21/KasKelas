@@ -1,39 +1,83 @@
-# KasKelas
+# KasKelas — Dashboard Pengelolaan Uang Kas Kelas
 
-Dasbor KasKelas dibuat untuk membantu bendahara kelas mengelola kas harian tanpa formulir manual yang rawan lupa dan salah hitung. Berikut ringkasan permasalahan dan cara aplikasi ini menyelesaikannya.
+KasKelas adalah aplikasi web sederhana namun powerful untuk membantu bendahara kelas mengelola kas harian tanpa formulir manual. Dengan tampilan yang ringkas dan fitur yang lengkap, KasKelas mempermudah proses pencatatan pemasukan, pengeluaran, tunggakan, serta kontrol saldo dompet dan bank.
 
-## Latar Belakang Permasalahan
-- **Data kas tersebar** di buku, chat, atau spreadsheet sehingga sulit melihat total saldo terbaru.
-- **Rekap mingguan dan bulanan memakan waktu** karena harus menggabungkan pemasukan, pengeluaran, serta tunggakan secara manual.
-- **Minim notifikasi** terkait siswa yang belum bayar atau dompet kas yang perlu diisi ulang.
-- **Validasi kas tunai** tidak rapi, sehingga bendahara kesulitan mempertanggungjawabkan dana saat diminta wali kelas.
+---
 
-## Solusi yang Ditawarkan
-- **Dashboard ringkas** yang memperlihatkan total siswa aktif, saldo dompet, saldo kas, dan hari kas berjalan dalam satu tampilan.
-- **Manajemen siswa** lengkap dengan status aktif, penambahan cepat, serta pencatatan kas per siswa untuk mengurangi salah input.
-- **Log kas harian** dengan kategori pemasukan/pengeluaran sehingga bendahara tahu sumber dana dan penggunaannya.
-- **Rekap & tunggakan otomatis** yang menyusun daftar top saldo, pengutang, dan target kas mingguan sehingga keputusan lebih cepat.
-- **Riwayat penarikan** sebagai bukti saat kas ditarik untuk kebutuhan kelas.
+## 🎯 Tujuan Proyek
+Bendahara kelas biasanya mencatat kas di buku, chat, atau spreadsheet yang berpotensi hilang, sulit dicari, dan rawan salah hitung. KasKelas dibuat untuk:
+- Mengelola kas harian dengan lebih cepat dan rapi  
+- Menampilkan saldo real-time  
+- Mendeteksi siapa yang masih nunggak  
+- Menyusun rekap mingguan otomatis  
+- Membantu bendahara mempertanggungjawabkan kas dengan bukti rapi  
 
-## Cara Menjalankan Proyek
+---
 
-### 1. Menggunakan Go Live (VS Code Live Server)
-1. Buka folder proyek ini di VS Code.
-2. Pastikan ekstensi **Live Server** terpasang.
-3. Klik kanan `index.html` lalu pilih **Open with Live Server** atau tekan tombol **Go Live** di status bar.
-4. Peramban akan terbuka otomatis di `http://127.0.0.1:5500` (atau port Live Server lain) dan menampilkan dashboard.
+## 🚀 Fitur Utama
 
-### 2. Menggunakan `npx serve`
-Metode ini cocok jika Anda ingin server statis ringan di luar VS Code.
+### 📌 Dashboard
+- Ringkasan siswa aktif
+- Total saldo dompet & saldo bank
+- Total tunggakan
+- Informasi hari kas berjalan
 
-1. Pastikan Node.js 16+ sudah terpasang di komputer.
-2. Buka terminal pada folder proyek.
-3. Jalankan perintah berikut:
-   ```bash
-   npx serve
-   ```
-4. `serve` akan menampilkan URL lokal (biasanya `http://localhost:3000`). Buka URL tersebut di peramban untuk melihat aplikasi.
+### 📌 Manajemen Siswa (CRUD)
+- Tambah, edit, nonaktifkan siswa  
+- Data tersimpan di LocalStorage  
+- Siswa tetap memiliki histori meskipun dinonaktifkan  
 
-> Tips: Tambahkan parameter `-l 4000` jika ingin mengganti port, misalnya `npx serve -l 4000`.
+### 📌 Kas Harian
+- Catat pembayaran kas Rp 1.000/hari (Senin–Jumat)
+- Pembayaran **lumpsum** (misal 10 ribu → menutup 10 hari)
+- Menentukan “lunas sampai tanggal berapa” secara otomatis
+- Saldo otomatis masuk ke dompet (default deposit)
 
-Dengan dua opsi tersebut, bendahara kelas bisa menjalankan dashboard secara lokal sesuai preferensi masing-masing.
+### 📌 Rekap & Tunggakan
+- Hitung total hari kas seharusnya dibayar sampai hari ini  
+- Hitung hari yang sudah ditutup oleh pembayaran  
+- Hitung tunggakan otomatis  
+- Sort by “penunggak terbanyak”  
+- Laporan ringan untuk wali kelas  
+
+### 📌 Dompet & Bank
+- Saldo dompet (kas tunai)
+- Saldo bank (kas virtual)
+- Pindahkan dana dari dompet → bank
+- Pindahkan dana dari bank → dompet
+
+### 📌 Riwayat Penarikan
+- Catat penarikan dari bank
+- Isi alasan & jumlah
+- Sebagai bukti penggunaan kas
+
+### 📌 Penyimpanan Data
+- Menggunakan `localStorage`
+- Tidak membutuhkan backend
+- Data tetap aman di perangkat pengguna
+
+---
+
+## 🧩 Tech Stack
+- **HTML**
+- **CSS / TailwindCSS**
+- **JavaScript (Vanilla)**
+- **LocalStorage (Browser)**
+
+Tanpa framework seperti React/Next agar aplikasi ringan dan cukup dijalankan secara lokal.
+
+---
+
+## 🛠️ Cara Menjalankan Proyek
+
+### 1️⃣ Menggunakan Live Server (VS Code — Direkomendasikan)
+1. Buka folder project di VS Code  
+2. Pastikan extension **Live Server** terpasang  
+3. Klik kanan `index.html` → **Open with Live Server**  
+4. Browser terbuka di `http://127.0.0.1:5500`
+
+### 2️⃣ Menggunakan `npx serve`
+Jika ingin menjalankan tanpa VS Code:
+
+```bash
+npx serve
