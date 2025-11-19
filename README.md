@@ -1,11 +1,3 @@
-Berikut **README.md versi lengkap & profesional**, lengkap dengan struktur, instalasi, fitur, preview section, serta badge-friendly.
-Setelah itu ada **Topics** untuk metadata GitHub.
-
----
-
-# ✅ **README.md (Lengkap & Siap Upload)**
-
-````md
 # KasKelas — Dashboard Pengelolaan Uang Kas Kelas
 
 KasKelas adalah aplikasi web sederhana namun powerful untuk membantu bendahara kelas mengelola kas harian tanpa formulir manual. Dengan tampilan yang ringkas dan fitur yang lengkap, KasKelas mempermudah proses pencatatan pemasukan, pengeluaran, tunggakan, serta kontrol saldo dompet dan bank.
